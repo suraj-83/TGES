@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 function SignUp() {
     const [formData, setFormData] = useState({
@@ -35,7 +36,6 @@ function SignUp() {
                 fullname: '',
                 gender: '',
                 email: '',
-                password: '',
                 country: '',
                 city: ''
             });
@@ -44,7 +44,7 @@ function SignUp() {
 
     return (
         <div className="h-screen w-full flex items-center justify-center">
-            <form className=" bg-blue-100 p-5 rounded-lg flex flex-col w-full md:w-1/2 lg:w-1/3 shadow-[0_0_10px_black]" onSubmit={handleSubmit}>
+            <form className="bg-blue-100 p-5 rounded-lg flex flex-col w-full md:w-1/2 lg:w-1/3 shadow-[0_0_10px_black]" onSubmit={handleSubmit}>
                 <h1 className='mb-3 size-18 font-bold ml-[40%] mr-[40%]'>SignUp</h1>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fullname">
@@ -160,7 +160,13 @@ function SignUp() {
                     >
                         Sign Up
                     </button>
+                    
                 </div>
+                
+            <p className="text-center pt-5">
+                Already have an account?{" "}
+                <Link to="/login" className="text-blue-500 hover:underline">Login</Link>
+            </p>
             </form>
         </div>
     );
