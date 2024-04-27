@@ -12,13 +12,6 @@ function Login() {
             ...prevState,
             [name]: value
         }));
-
-        // Check if the email field is filled
-        if (name === 'email') {
-            const isEmailFilled = value.trim() !== '';
-            // Disable the password field if email is not filled
-            document.getElementById('password').disabled = !isEmailFilled;
-        }
     };
 
     const handleSubmit = (e) => {
@@ -34,7 +27,7 @@ function Login() {
     return (
         <div className="h-[90vh] w-full flex items-center justify-center">
             <form className=" bg-blue-100 p-5 rounded-lg flex flex-col w-full md:w-1/2 lg:w-1/3 shadow-[0_0_10px_black]" onSubmit={handleSubmit}>
-                <h1 className='mb-3 size-18 font-bold ml-[40%] mr-[40%]'>LogIn</h1>
+                <h1 className='mb-3 size-18 font-bold ml-[40%] mr-[40%]'>Login</h1>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                         Email
@@ -63,7 +56,6 @@ function Login() {
                         value={formData.password}
                         onChange={handleChange}
                         required
-                        disabled={!formData.email.trim()}
                     />
                 </div>
                 <div className="flex items-center justify-between">

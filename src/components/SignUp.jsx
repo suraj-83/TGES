@@ -16,65 +16,30 @@ function SignUp() {
             ...prevState,
             [name]: value
         }));
-
-        // Check if the current input field is empty
-        if (value.trim() === '') {
-            // Disable the next input field
-            switch (name) {
-                case 'fullname':
-                    document.getElementById('gender').disabled = true;
-                    break;
-                case 'gender':
-                    document.getElementById('country').disabled = true;
-                    break;
-                case 'country':
-                    document.getElementById('city').disabled = true;
-                    break;
-                case 'city':
-                    document.getElementById('email').disabled = true;
-                    break;
-                case 'email':
-                    document.getElementById('password').disabled = true;
-                    break;
-                default:
-                    break;
-            }
-        } else {
-            // Enable the next input field
-            switch (name) {
-                case 'fullname':
-                    document.getElementById('gender').disabled = false;
-                    break;
-                case 'gender':
-                    document.getElementById('country').disabled = false;
-                    break;
-                case 'country':
-                    document.getElementById('city').disabled = false;
-                    break;
-                case 'city':
-                    document.getElementById('email').disabled = false;
-                    break;
-                case 'email':
-                    document.getElementById('password').disabled = false;
-                    break;
-                default:
-                    break;
-            }
-        }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Sign up form submitted:', formData);
-        // Here you can add logic to handle form submission, such as API calls
-        setFormData({
-            fullname: '',
-            gender: '',
-            email: '',
-            password: '',
-            country: '',
-            city: ''
-        });
+
+        // Check if any required field is empty
+        const isAnyFieldEmpty = Object.values(formData).some(value => value.trim() === '');
+
+        if (isAnyFieldEmpty) {
+            // Display an error message or prevent the submission
+            console.log('Please fill in all the fields');
+        } else {
+            // All fields are filled, proceed with form submission
+            console.log('Sign up form submitted:', formData);
+            // Here you can add logic to handle form submission, such as API calls
+            setFormData({
+                fullname: '',
+                gender: '',
+                email: '',
+                password: '',
+                country: '',
+                city: ''
+            });
+        }
     };
 
     return (
@@ -107,7 +72,6 @@ function SignUp() {
                         value={formData.gender}
                         onChange={handleChange}
                         required
-                        disabled={!formData.fullname.trim()}
                     >
                         <option value="">Select Gender</option>
                         <option value="male">Male</option>
@@ -125,7 +89,6 @@ function SignUp() {
                         value={formData.country}
                         onChange={handleChange}
                         required
-                        disabled={!formData.gender.trim()}
                     >
                         <option value="">Select Country</option>
                         <option value="India">India</option>
@@ -143,7 +106,6 @@ function SignUp() {
                         value={formData.city}
                         onChange={handleChange}
                         required
-                        disabled={!formData.country.trim()}
                     >
                         <option value="">Select City</option>
                         {/* List of cities for India */}
@@ -174,7 +136,6 @@ function SignUp() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        disabled={!formData.city.trim()}
                     />
                 </div>
                 <div className="mb-6">
@@ -190,7 +151,6 @@ function SignUp() {
                         value={formData.password}
                         onChange={handleChange}
                         required
-                        disabled={!formData.email.trim()}
                     />
                 </div>
                 <div className="flex items-center justify-between">
