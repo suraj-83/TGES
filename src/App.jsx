@@ -4,7 +4,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-import AdminLogin from './components/Admin'; // Import the AdminLogin component
+import Admin from './components/Admin'; // Import the AdminLogin component
 import AdminPanel from './components/AdminPanel';
 
 function App() {
