@@ -4,7 +4,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-import Admin from './components/Admin'; // Import the AdminLogin component
+import AdminLogin from './components/AdminLogin'; // Import the AdminLogin component
 import AdminPanel from './components/AdminPanel';
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/admin" element={<Admin />} /> {/* Add this route for AdminLogin */}
+            <Route path="/adminlogin" element={<AdminLogin />} /> {/* Add this route for AdminLogin */}
             <Route path="/adminpanel" element={<AdminPanel />} /> {/* Add this route for AdminPanel */} 
           </Routes>
         </div>         
