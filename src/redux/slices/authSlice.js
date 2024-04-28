@@ -109,6 +109,16 @@ export const logout = createAsyncThunk('auth/logout', async () => {
     }
 })
 
+export const getAllUsers = createAsyncThunk('auth/getAllUsers', async () => {
+    try {
+        const response = axiosInstance.get("/dashboard")
+
+        return (await response).data.data;
+    } catch (error) {
+        toast.error(error?.message)
+    }
+})
+
 const authSlice = createSlice({
     name: 'auth',
     initialState,

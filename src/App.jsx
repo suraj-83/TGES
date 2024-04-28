@@ -1,25 +1,27 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Link,
-} from "react-router-dom";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
-import AdminLogin from "./components/AdminLogin"; // Import the AdminLogin component
-import AdminPanel from "./components/AdminPanel";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import Login from "./components/User/Login";
+import SignUp from "./components/User/SignUp";
+import AdminLogin from "./components/Admin/AdminLogin"; // Import the AdminLogin component
+import AdminPanel from "./components/Admin/AdminPanel";
 import RequireAuth from "./components/Auth/RequireAuth";
 import Denied from "./components/Denied";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "./redux/slices/authSlice";
 import Home from "./components/Home";
+import Travel from "./components/Travel/Travel";
+import TrainTravel from "./components/Travel/TrainTravel";
+import AirTravel from "./components/Travel/AirTravel";
+import Profile from "./components/User/Profile";
+import UpdateProfile from "./components/User/UpdateProfile";
+import ChangePassword from "./components/User/ChangePassword";
 
 function App() {
   const dispatch = useDispatch();
-  
+
   const isLoggedIn = useSelector((state) => state?.auth?.isLoggedIn);
-  
+  const role = useSelector((state) => state?.auth?.role);
+
   async function handleLogOut(e) {
     e.preventDefault();
 
@@ -45,6 +47,18 @@ function App() {
             <div className="flex items-center mr-5 font-semibold">
               {isLoggedIn ? (
                 <div className="flex gap-4">
+                  {role === "ADMIN" && (
+                    <Link to={"/adminpanel"}>
+                      <button className="text-base text-white font-semibold hover:text-blue-100 hover:underline rounded-full">
+                        Admin
+                      </button>
+                    </Link>
+                  )}
+                  <Link to={"/profile"}>
+                    <button className="text-base text-white font-semibold hover:text-blue-100 hover:underline rounded-full">
+                      Profile
+                    </button>
+                  </Link>
                   <Link onClick={handleLogOut}>
                     <button className="text-base text-white font-semibold hover:text-blue-100 hover:underline rounded-full">
                       Logout
@@ -76,10 +90,20 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/admin" element={<AdminLogin />} />
 
-            <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
-              <Route path="/adminpanel" element={<AdminPanel />} />
-            </Route>
+            {/* Travel Routes */}
+            <Route path="/travel" element={<Travel />} />
+            <Route path="/travel/train" element={<TrainTravel />} />
+            <Route path="/travel/air" element={<AirTravel />} />
 
+            {/* User Routes */}
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/update" element={<UpdateProfile />} />
+            <Route path="/change-password" element={<ChangePassword />} />
+
+            {/* Admin Routes */}
+            <Route path="/adminpanel" element={<AdminPanel />} />
+
+            <Route path="*" element="Page Not Found" />
             <Route path="/denied" element={<Denied />} />
           </Routes>
         </div>

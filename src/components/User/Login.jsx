@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../redux/slices/authSlice";
+import { login } from "../../redux/slices/authSlice";
 
 function Login() {
   const navigate = useNavigate();
@@ -24,10 +24,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !signinDetails.email ||
-      !signinDetails.password
-    ) {
+    if (!signinDetails.email || !signinDetails.password) {
       toast.error("Please fill all the fields");
       return;
     }
@@ -36,7 +33,7 @@ function Login() {
     console.log(response);
 
     if (response?.payload?.data?.success) {
-      navigate("/adminpanel");
+      navigate("/travel");
     }
   };
 

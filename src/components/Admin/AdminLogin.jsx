@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login } from "../redux/slices/authSlice";
+import { login } from "../../redux/slices/authSlice";
 
 function AdminLogin() {
   const navigate = useNavigate();
