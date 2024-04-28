@@ -4,6 +4,7 @@ import Login from "./components/User/Login";
 import SignUp from "./components/User/SignUp";
 import AdminLogin from "./components/Admin/AdminLogin"; // Import the AdminLogin component
 import AdminPanel from "./components/Admin/AdminPanel";
+import AdminDashboard from "./components/Admin/AdminDashboard";
 import RequireAuth from "./components/Auth/RequireAuth";
 import Denied from "./components/Denied";
 import { useDispatch, useSelector } from "react-redux";
@@ -102,6 +103,7 @@ function App() {
 
             {/* Admin Routes */}
             <Route path="/adminpanel" element={<AdminPanel />} />
+            <Route path="/dashboard" element={<AdminDashboard />} />
 
             <Route path="*" element="Page Not Found" />
             <Route path="/denied" element={<Denied />} />
