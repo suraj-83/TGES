@@ -54,6 +54,18 @@ export const getTravelDetails = createAsyncThunk('travel/getAllDetails', async (
     }
 })
 
+export const getCurrentUserTravelDetails = createAsyncThunk('travel/getCurrentUserTravelDetails', async () => {
+    try {
+        const response = axiosInstance.get("/travel/travel-details")
+
+        console.log((await response).data);
+
+        return (await response).data;
+    } catch (error) {
+        toast.error(error?.message)
+    }
+})
+
 const travelSlice = createSlice({
     name: 'travel',
     initialState,

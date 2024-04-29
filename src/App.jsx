@@ -17,6 +17,7 @@ import Profile from "./components/User/Profile";
 import UpdateProfile from "./components/User/UpdateProfile";
 import ChangePassword from "./components/User/ChangePassword";
 import UserDetails from "./components/Admin/UserDetails";
+import TravelDetails from "./components/User/TravelDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -108,6 +109,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/update" element={<UpdateProfile />} />
             <Route path="/change-password" element={<ChangePassword />} />
+            <Route path="/user/travel" element={<TravelDetails />}/>
 
             {/* Admin Routes */}
             <Route path="/adminpanel" element={<AdminPanel />} />
