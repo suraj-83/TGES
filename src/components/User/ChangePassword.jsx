@@ -1,55 +1,61 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { changePassword } from '../../redux/slices/authSlice';
 
 const ChangePassword = () => {
-  // Define state variables for old password, new password, and confirm password
-  const [oldPassword, setOldPassword] = useState('')
-  const [newPassword, setNewPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-
-  // Function to handle changes in the old password input
-  const handleOldPasswordChange = (event) => {
-    setOldPassword(event.target.value)
-  }
-
-  // Function to handle changes in the new password input
-  const handleNewPasswordChange = (event) => {
-    setNewPassword(event.target.value)
-  }
-
-  // Function to handle changes in the confirm password input
-  const handleConfirmPasswordChange = (event) => {
-    setConfirmPassword(event.target.value)
-  }
-
-  // Function to handle form submission
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    // Check if new password matches confirm password and perform password change logic
-    if (newPassword === confirmPassword) {
-      // Perform password change logic here
-      console.log('Password changed successfully')
-      // Clear input fields after successful password change
-      setOldPassword('')
-      setNewPassword('')
-      setConfirmPassword('')
-    } else {
-      alert('New password and confirm password do not match')
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+  
+    const [userInput, setUserInput] = useState({
+      oldPassword: "",
+      newPassword: "",
+    });
+  
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+  
+      if (!userInput.oldPassword || !userInput.newPassword) {
+        toast.error("All Fields are required");
+        return;
+      }
+  
+      const response = await dispatch(changePassword(userInput));
+  
+      if (response?.payload?.success) {
+        setUserInput({
+          oldPassword: "",
+          newPassword: "",
+        });
+  
+        navigate("/profile");
+      }
     }
-  }
+
+    function handleUserInput(e) {
+      const { name, value } = e.target;
+  
+      setUserInput({
+        ...userInput,
+        [name]: value,
+      });
+    }
+
 
   return (
-    <div className="max-w-md mx-auto mt-10">
-      <h2 className="text-2xl font-bold mb-4">Change Password</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="bg-blue-100 p-5 rounded-lg flex flex-col w-full md:w-1/2 lg:w-1/3 shadow-[0_0_10px_black]">
+      <h2 className="text-2xl font-bold mb-4 uppercase underline text-center">Change Password</h2>
+      <form onSubmit={handleFormSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="old-password">
             Old Password
           </label>
           <input
-            id="old-password"
+            id="oldPassword"
+            name='oldPassword'
             type="password"
-            value={oldPassword}
-            onChange={handleOldPasswordChange}
+            value={userInput.oldPassword}
+            onChange={handleUserInput}
             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Enter old password"
             required
@@ -60,26 +66,13 @@ const ChangePassword = () => {
             New Password
           </label>
           <input
-            id="new-password"
+            id="newPassword"
+            name='newPassword'
             type="password"
-            value={newPassword}
-            onChange={handleNewPasswordChange}
+            value={userInput.newPassword}
+            onChange={handleUserInput}
             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Enter new password"
-            required
-          />
-        </div>
-        <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirm-password">
-            Confirm Password
-          </label>
-          <input
-            id="confirm-password"
-            type="password"
-            value={confirmPassword}
-            onChange={handleConfirmPasswordChange}
-            className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Confirm new password"
             required
           />
         </div>
@@ -91,6 +84,11 @@ const ChangePassword = () => {
             Change Password
           </button>
         </div>
+        <p className='text-center mt-5'>
+          <Link to={"/profile"} className="text-blue-500 hover:text-blue-700 hover:underline">
+            Go back to profile
+          </Link>
+        </p>
       </form>
     </div>
   )

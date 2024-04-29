@@ -10,8 +10,6 @@ const initialState = {
 
 export const createAccount = createAsyncThunk('auth/signup', async (data) => {
     try {
-        console.log("DATA: ", data)
-
         const response = axiosInstance.post("/users/register", data)
 
         toast.promise(response, {
@@ -48,6 +46,7 @@ export const updateProfile = createAsyncThunk('auth/updateProfile', async (data)
 export const changePassword = createAsyncThunk('auth/changePassword', async (data) => {
     try {
         const response = axiosInstance.post("/users/change-password", data)
+
         toast.promise(response, {
             loading: 'Updating password...',
             success: (data) => {
@@ -128,10 +127,13 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(login.fulfilled, (state, action) => {
+
+                console.log("Login Details: ", action.payload.data)
+
                 if (action.payload.status === 200) {
                     localStorage.setItem("user", JSON.stringify(action?.payload?.data?.data));
                     localStorage.setItem("isLoggedIn", true);
-                    localStorage.setItem("role", action?.payload?.data?.data?.role);
+                    localStorage.setItem("role", action?.payload?.data?.data?.user?.role);
                     state.isLoggedIn = true;
                     state.role = action?.payload?.data?.data?.user?.role;
                     state.data = action?.payload?.data?.data;

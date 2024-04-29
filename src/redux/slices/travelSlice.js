@@ -8,6 +8,8 @@ const initialState = {
 
 export const trainTravel = createAsyncThunk('travel/train', async (data) => {
     try {
+        console.log("Train : ", data)
+
         const response = axiosInstance.post("/travel/train", data)
 
         toast.promise(response, {
@@ -42,9 +44,9 @@ export const airTravel = createAsyncThunk('travel/air', async (data) => {
     }
 })
 
-export const getTravelDetails = createAsyncThunk('travel/getAllDetails', async () => {
+export const getTravelDetails = createAsyncThunk('travel/getAllDetails', async (userId) => {
     try {
-        const response = axiosInstance.get("/travel/travel-details")
+        const response = axiosInstance.get(`/travel/travel-all/${userId}`)
 
         return (await response).data;
     } catch (error) {

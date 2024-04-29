@@ -16,6 +16,7 @@ import AirTravel from "./components/Travel/AirTravel";
 import Profile from "./components/User/Profile";
 import UpdateProfile from "./components/User/UpdateProfile";
 import ChangePassword from "./components/User/ChangePassword";
+import UserDetails from "./components/Admin/UserDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,6 +53,13 @@ function App() {
                     <Link to={"/adminpanel"}>
                       <button className="text-base text-white font-semibold hover:text-blue-100 hover:underline rounded-full">
                         Admin
+                      </button>
+                    </Link>
+                  )}
+                  {role === "USER" && (
+                    <Link to={"/travel"}>
+                      <button className="text-base text-white font-semibold hover:text-blue-100 hover:underline rounded-full">
+                        Travel
                       </button>
                     </Link>
                   )}
@@ -104,6 +112,7 @@ function App() {
             {/* Admin Routes */}
             <Route path="/adminpanel" element={<AdminPanel />} />
             <Route path="/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/user/:id" element={<UserDetails />}/>
 
             <Route path="*" element="Page Not Found" />
             <Route path="/denied" element={<Denied />} />
