@@ -43,7 +43,7 @@ const ChangePassword = () => {
 
 
   return (
-    <div className="bg-blue-100 p-5 rounded-lg flex flex-col w-full md:w-1/2 lg:w-1/3 shadow-[0_0_10px_black]">
+    <div className="flex items-center flex-col w-full justify-center min-h-[90vh]"><div className="bg-blue-100 p-5 rounded-lg flex flex-col w-full md:w-1/2 lg:w-1/3 shadow-[0_0_10px_black]">
       <h2 className="text-2xl font-bold mb-4 uppercase underline text-center">Change Password</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="mb-4">
@@ -90,7 +90,7 @@ const ChangePassword = () => {
           </Link>
         </p>
       </form>
-    </div>
+    </div></div>
   )
 }
 

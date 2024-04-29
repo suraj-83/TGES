@@ -6,6 +6,7 @@ const Profile = () => {
   const userData = useSelector((state) => state.auth.data);
 
   return (
+  <div className="flex items-center flex-col w-full justify-center min-h-[90vh]">
     <div className="bg-blue-100 p-5 rounded-lg flex flex-col w-full md:w-1/2 lg:w-1/3 shadow-[0_0_10px_black]">
       <h1 className="text-3xl font-bold uppercase underline text-center mb-5">
         Profile
@@ -34,6 +35,7 @@ const Profile = () => {
         <Link to={"/user/travel"}>Travel Details</Link>
       </button>
     </div>
+   </div>
   );
 };
 

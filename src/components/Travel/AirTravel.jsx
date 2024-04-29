@@ -45,7 +45,7 @@ const AirTravel = () => {
 
   return (
     <div className='w-full flex items-center justify-center min-h-[90vh] '>
-      <div className='w-full md:w-1/2 lg:w-1/3'>
+      <div className='w-full md:w-1/2 flex flex-col justify-center items-center lg:w-1/3'>
         <h1 className='text-3xl font-bold mb-8 text-center uppercase underline'>Air Travel Form</h1>
         <form className='w-full max-w-lg'>
           <div className='mb-6'>

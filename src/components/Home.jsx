@@ -21,7 +21,7 @@ const Home = () => {
   };
 
   return (
-    <div className='min-h-screen flex flex-col'>
+    <div className='min-h-screen flex justify-center items-center flex-col'>
       <div className="flex-grow relative">
         <img src="https://wallpaperaccess.com/full/4823404.jpg" alt="" className='bgimg object-fill w-full h-full' />
         <div className="absolute inset-0 flex items-center justify-center">

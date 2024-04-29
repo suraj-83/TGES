@@ -93,7 +93,7 @@ function App() {
           </ul>
         </nav>
 
-        <div className="flex-grow flex justify-center items-center m-5 min-h-[90vh]">
+        <div className="flex-grow flex m-5 min-h-[90vh]">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
