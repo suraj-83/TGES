@@ -1,37 +1,30 @@
 import React, { useState } from 'react'
 
 const AirTravel = () => {
-  // Define state variables for departure and destination airports
-  const [departureAirport, setDepartureAirport] = useState('');
-  const [destinationAirport, setDestinationAirport] = useState('');
-  const [flightDate, setFlightDate] = useState('');
-  const [flightTime, setFlightTime] = useState('');
+  const [departureAirport, setDepartureAirport] = useState('')
+  const [destinationAirport, setDestinationAirport] = useState('')
+  const [flightDate, setFlightDate] = useState('')
+  const [classOfTravel, setClassOfTravel] = useState('')
 
-  // Define an array of airport options
   const airportOptions = [
     "New Delhi (DEL)", "Mumbai (BOM)", "Bangalore (BLR)", "Hyderabad (HYD)", "Chennai (MAA)", "Kolkata (CCU)", "Goa (GOI)", "Ahmedabad (AMD)", "Jaipur (JAI)", "Lucknow (LKO)", "Pune (PNQ)", "Srinagar (SXR)", "Guwahati (GAU)", "Bhubaneswar (BBI)", "Raipur (RPR)", "New York (JFK)", "Los Angeles (LAX)", "London (LHR)", "Paris (CDG)", "Tokyo (NRT)"
-    // Add more airports as needed
-  ];
+  ]
 
-  // Function to handle changes in the departure airport dropdown
   const handleDepartureChange = (event) => {
-    setDepartureAirport(event.target.value);
-  };
+    setDepartureAirport(event.target.value)
+  }
 
-  // Function to handle changes in the destination airport dropdown
   const handleDestinationChange = (event) => {
-    setDestinationAirport(event.target.value);
-  };
+    setDestinationAirport(event.target.value)
+  }
 
-  // Function to handle changes in the flight date input
   const handleDateChange = (event) => {
-    setFlightDate(event.target.value);
-  };
+    setFlightDate(event.target.value)
+  }
 
-  // Function to handle changes in the flight time input
-  const handleTimeChange = (event) => {
-    setFlightTime(event.target.value);
-  };
+  const handleClassOfTravelChange = (event) => {
+    setClassOfTravel(event.target.value)
+  }
 
   return (
     <div className='flex items-center justify-center min-h-[90vh]'>
@@ -81,16 +74,19 @@ const AirTravel = () => {
             />
           </div>
           <div className='mb-6'>
-            <label className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' htmlFor='flight-time'>
-              Time of Travel
+            <label className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' htmlFor='class-of-travel'>
+              Class of Travel
             </label>
-            <input
+            <select
+              value={classOfTravel}
+              onChange={handleClassOfTravelChange}
               className='appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
-              id='flight-time'
-              type='time'
-              value={flightTime}
-              onChange={handleTimeChange}
-            />
+            >
+              <option value=''>Select class of travel</option>
+              <option value='ECONOMY'>Economy</option>
+              <option value='BUSINESS'>Business</option>
+              <option value='FIRST'>First</option>
+            </select>
           </div>
           <div className='flex items-center justify-center'>
             <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' type='button'>
@@ -100,7 +96,7 @@ const AirTravel = () => {
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default AirTravel

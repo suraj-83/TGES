@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 
 const TrainTravel = () => {
-  // Define state variables for From and To stations
-  const [fromStation, setFromStation] = useState('');
-  const [toStation, setToStation] = useState('');
-  const [departureDate, setDepartureDate] = useState('');
-  const [departureTime, setDepartureTime] = useState('');
+  // Define state variables for From station, To station, departure date, departure time, and class of travel
+  const [fromStation, setFromStation] = useState('')
+  const [toStation, setToStation] = useState('')
+  const [departureDate, setDepartureDate] = useState('')
+  const [classOfTravel, setClassOfTravel] = useState('')
 
   // Define an array of station options
   const stationOptions = [
@@ -13,24 +13,17 @@ const TrainTravel = () => {
     // Add more stations as needed
   ];
 
-  // Function to handle changes in the From station dropdown
-  const handleFromChange = (event) => {
-    setFromStation(event.target.value);
-  };
-
-  // Function to handle changes in the To station dropdown
-  const handleToChange = (event) => {
-    setToStation(event.target.value);
-  };
+  // Define an array of class options
+  const classOptions = ["SL", "1AC", "2AC", "3AC"];
 
   // Function to handle changes in the departure date input
   const handleDateChange = (event) => {
-    setDepartureDate(event.target.value);
+    setDepartureDate(event.target.value)
   };
 
-  // Function to handle changes in the departure time input
-  const handleTimeChange = (event) => {
-    setDepartureTime(event.target.value);
+  // Function to handle changes in the class of travel dropdown
+  const handleClassOfTravelChange = (event) => {
+    setClassOfTravel(event.target.value)
   };
 
   return (
@@ -44,7 +37,7 @@ const TrainTravel = () => {
             </label>
             <select
               value={fromStation}
-              onChange={handleFromChange}
+              onChange={(event) => setFromStation(event.target.value)}
               className='appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white'
             >
               <option value=''>Select departure station</option>
@@ -59,7 +52,7 @@ const TrainTravel = () => {
             </label>
             <select
               value={toStation}
-              onChange={handleToChange}
+              onChange={(event) => setToStation(event.target.value)}
               className='appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
             >
               <option value=''>Select destination station</option>
@@ -69,31 +62,33 @@ const TrainTravel = () => {
             </select>
           </div>
         </div>
-        <div className='flex flex-wrap -mx-3 mb-6'>
-          <div className='w-full px-3'>
-            <label className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' htmlFor='train-date'>
-              Date
-            </label>
-            <input
-              className='appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
-              id='train-date'
-              type='date'
-              value={departureDate}
-              onChange={handleDateChange}
-            />
-          </div>
-          <div className='w-full px-3'>
-            <label className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' htmlFor='train-time'>
-              Time
-            </label>
-            <input
-              className='appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
-              id='train-time'
-              type='time'
-              value={departureTime}
-              onChange={handleTimeChange}
-            />
-          </div>
+        <div className='mb-6'>
+          <label className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' htmlFor='train-date'>
+            Date
+          </label>
+          <input
+            className='appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+            id='train-date'
+            type='date'
+            value={departureDate}
+            onChange={handleDateChange}
+          />
+        </div>
+        {/* Class of Travel */}
+        <div className='mb-6'>
+          <label className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' htmlFor='class-of-travel'>
+            Class of Travel
+          </label>
+          <select
+            value={classOfTravel}
+            onChange={handleClassOfTravelChange}
+            className='appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+          >
+            <option value=''>Select class of travel</option>
+            {classOptions.map((classType, index) => (
+              <option key={index} value={classType}>{classType}</option>
+            ))}
+          </select>
         </div>
         <div className='flex items-center justify-between'>
           <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' type='button'>
