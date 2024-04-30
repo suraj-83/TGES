@@ -28,7 +28,7 @@ export const createAccount = createAsyncThunk('auth/signup', async (data) => {
 
 export const updateProfile = createAsyncThunk('auth/updateProfile', async (data) => {
     try {
-        const response = axiosInstance.put("/users/update", data)
+        const response = axiosInstance.patch("/users/update", data)
         toast.promise(response, {
             loading: 'Updating profile...',
             success: (data) => {
