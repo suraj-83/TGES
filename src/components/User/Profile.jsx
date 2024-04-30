@@ -24,14 +24,14 @@ const Profile = () => {
         <p className="font-normal">{userData?.user?.city}</p>
       </div>
       <div className="grid grid-cols-2 gap-2 mt-5">
-        <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
+        <button className="bg-blue-500 text-sm lg:text-base hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
           <Link to={"/update"}>Edit Profile</Link>
         </button>
-        <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full">
+        <button className="bg-green-500 text-sm lg:text-base shrink-0 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full">
           <Link to={"/change-password"}>Change Password</Link>
         </button>
       </div>
-      <button className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full mt-4">
+      <button className="bg-indigo-500 text-sm lg:text-base hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full mt-4">
         <Link to={"/user/travel"}>Travel Details</Link>
       </button>
     </div>

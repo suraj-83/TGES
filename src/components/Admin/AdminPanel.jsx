@@ -31,14 +31,14 @@ function AdminPanel() {
     };
 
     return (
-        <div className='flex w-full h-screen'> {/* Set full width and height for the flex container */}
-            <div className='w-[6%]  bg-gray-200 flex h-full flex-col justify-start'> {/* Set the width and height of the sidebar */}
-                <div className="p-2">
+        <div className='flex w-full h-screen -m-5'> {/* Set full width and height for the flex container */}
+            <div className='min-w-[10%] md:w-[20%] bg-gray-200 flex h-full flex-col justify-start'> {/* Set the width and height of the sidebar */}
+                <div className="p-2 text-sm">
                     <ul>
                         <li>
                             <button 
                                 onClick={() => handleOptionClick('retail')} 
-                                className={` px-4 w-full text-left ${selectedOption === 'retail' ? 'bg-blue-500 text-white' : ''}`}
+                                className={` pr-4 pl-1 w-full text-left ${selectedOption === 'retail' ? 'bg-blue-500 text-white' : ''}`}
                                 disabled={selectedOption === 'corporate'}
                             >
                                 Retail
@@ -47,7 +47,7 @@ function AdminPanel() {
                         <li>
                             <button 
                                 onClick={() => handleOptionClick('corporate')} 
-                                className={`px-4 w-full text-left ${selectedOption === 'corporate' ? 'bg-blue-500 text-white' : ''}`}
+                                className={`pr-4 pl-1 w-full text-left ${selectedOption === 'corporate' ? 'bg-blue-500 text-white' : ''}`}
                                 disabled={true}
                             >
                                 Corporate
