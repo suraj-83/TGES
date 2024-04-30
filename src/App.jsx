@@ -44,7 +44,7 @@ function App() {
               <img
                 src="https://www.tgestravel.com/assets/images/logo/tges-logo.png"
                 alt="logo"
-                className="h-8"
+                className="h-16"
               />
             </Link>
             <div className="flex items-center mr-5 font-semibold">
