@@ -38,7 +38,7 @@ function App() {
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
-        <nav className="bg-blue-800 p-4 h-[10vh]">
+        <nav className="bg-blue-800 p-4 min-h-[10vh]">
           <ul className="flex items-center justify-between">
             <Link to="/">
               <img
